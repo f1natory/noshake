@@ -1,6 +1,5 @@
 # No Shake
 
-![Minecraft](https://img.shields.io/badge/Minecraft-26.2-62B47A?style=for-the-badge&logo=minecraft)
 ![Fabric](https://img.shields.io/badge/Loader-Fabric-DBD0B4?style=for-the-badge)
 ![Environment](https://img.shields.io/badge/Environment-Client-4C8BF5?style=for-the-badge)
 ![License](https://img.shields.io/badge/License-MIT-yellow?style=for-the-badge)
