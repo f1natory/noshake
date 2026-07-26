@@ -1,34 +1,31 @@
 package no.noshake.mixin.client;
 
-import net.minecraft.client.network.ClientPlayerEntity;
-import net.minecraft.client.render.command.OrderedRenderCommandQueue;
-import net.minecraft.client.render.item.HeldItemRenderer;
-import net.minecraft.client.util.math.MatrixStack;
+import com.mojang.blaze3d.vertex.PoseStack;
+import net.minecraft.client.player.LocalPlayer;
+import net.minecraft.client.renderer.ItemInHandRenderer;
+import net.minecraft.client.renderer.SubmitNodeCollector;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-@Mixin(HeldItemRenderer.class)
+@Mixin(ItemInHandRenderer.class)
 public abstract class HeldItemRendererMixin {
-    @Inject(
-            method = "renderItem(FLnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/client/render/command/OrderedRenderCommandQueue;Lnet/minecraft/client/network/ClientPlayerEntity;I)V",
-            at = @At("HEAD")
-    )
+    @Inject(method = "renderHandsWithItems", at = @At("HEAD"))
     private void noshake$disableHandRotationSmoothing(
-            float tickProgress,
-            MatrixStack matrices,
-            OrderedRenderCommandQueue queue,
-            ClientPlayerEntity player,
+            float tickDelta,
+            PoseStack poseStack,
+            SubmitNodeCollector submitNodeCollector,
+            LocalPlayer player,
             int light,
             CallbackInfo ci
     ) {
-        float yaw = player.getYaw();
-        float pitch = player.getPitch();
+        float yaw = player.getYRot();
+        float pitch = player.getXRot();
 
-        player.renderYaw = yaw;
-        player.lastRenderYaw = yaw;
-        player.renderPitch = pitch;
-        player.lastRenderPitch = pitch;
+        player.yBob = yaw;
+        player.yBobO = yaw;
+        player.xBob = pitch;
+        player.xBobO = pitch;
     }
 }
