@@ -1,0 +1,38 @@
+{
+  "schemaVersion": 1,
+  "id": "noshake",
+  "version": "${version}",
+  "name": "No Shake",
+  "description": "Remove hand shake.",
+  "authors": [
+    {
+      "name": "f1natory",
+      "contact": {
+        "homepage": "https://modrinth.com/project/noshake",
+        "sources": "https://github.com/f1natory/noshake"
+      }
+    }
+  ],
+  "contact": {
+    "homepage": "https://modrinth.com/project/noshake",
+    "sources": "https://github.com/f1natory/noshake",
+    "issues": "https://github.com/f1natory/noshake/issues"
+  },
+  "icon": "assets/pack.png",
+  "license": "MIT",
+  "environment": "client",
+  "mixins": [
+    {
+      "config": "noshake.client.mixins.json",
+      "environment": "client"
+    }
+  ],
+  "depends": {
+    "fabricloader": ">=0.19.3",
+    "minecraft": "~26.2",
+    "java": ">=25"
+  },
+  "suggests": {
+    "modmenu": "*"
+  }
+}

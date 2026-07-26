@@ -1,0 +1,11 @@
+{
+  "required": true,
+  "package": "no.noshake.mixin.client",
+  "compatibilityLevel": "JAVA_25",
+  "client": [
+    "HeldItemRendererMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
