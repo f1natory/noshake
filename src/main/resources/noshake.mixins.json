@@ -1,0 +1,13 @@
+{
+  "required": true,
+  "package": "no.noshake.api.mixin",
+  "compatibilityLevel": "JAVA_25",
+  "client": [
+    "HeldItemRendererMixin",
+    "GameRendererMixin",
+    "GameRendererInvoker"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

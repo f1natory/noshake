@@ -1,0 +1,5 @@
+{
+  "noshake.config.title": "No Shake",
+  "noshake.config.custom_bob": "Кастомная тряска руки",
+  "noshake.config.hand_drop": "Сила покачивания: %s%%"
+}

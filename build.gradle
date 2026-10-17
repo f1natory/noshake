@@ -1,0 +1,63 @@
+plugins {
+    id "net.fabricmc.fabric-loom" version "1.19.1"
+}
+
+version = project.mod_version
+group = project.maven_group
+
+base {
+    archivesName = project.archives_base_name
+}
+
+loom {
+    mods {
+        noshake {
+            sourceSet sourceSets.main
+        }
+    }
+}
+
+repositories {
+    maven {
+        name = "TerraformersMC"
+        url = "https://maven.terraformersmc.com/releases/"
+    }
+}
+
+dependencies {
+    minecraft "com.mojang:minecraft:${project.minecraft_version}"
+    implementation "net.fabricmc:fabric-loader:${project.loader_version}"
+
+    // Minecraft 26.3 ships deobfuscated, so mod dependencies need no remapping and are declared
+    // like regular dependencies. Mod Menu bundles the Fabric API modules it needs as nested
+    // (Jar-in-Jar) libraries, so those transitive modules are excluded here.
+    implementation("com.terraformersmc:modmenu:${project.modmenu_version}") {
+        exclude group: "net.fabricmc.fabric-api"
+    }
+}
+
+processResources {
+    inputs.property "version", project.version
+
+    filesMatching("fabric.mod.json") {
+        expand "version": inputs.properties.version
+    }
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.release = 25
+}
+
+java {
+    withSourcesJar()
+
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(25)
+    }
+}
+
+jar {
+    from("LICENSE") {
+        rename { "${it}_${project.base.archivesName.get()}" }
+    }
+}

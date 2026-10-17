@@ -1,0 +1,5 @@
+{
+  "noshake.config.title": "No Shake",
+  "noshake.config.custom_bob": "Custom bob",
+  "noshake.config.hand_drop": "Hand drop: %s%%"
+}
